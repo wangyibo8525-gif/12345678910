@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>สร้างงาน — กาฟิวทำเว็บ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="app.webmanifest">
+</head>
+<body id="body">
+
+<div id="load">
+    <div class="sp"></div>
+    <p>กำลังเตรียมระบบ...</p>
+    <p class="s">✅ ใช้ได้ไม่มีเน็ต | รองรับทุกภาษา | ห้าม 18+ โดยเด็ดขาด</p>
+</div>
+
+<div id="main" class="pg" style="display:none;">
+    <h2>🎯 เริ่มสร้างงาน</h2>
+    <button class="btn-l" onclick="sw('mod')">📦 โมเดลสำเร็จรูป</button>
+    <button class="btn-l" onclick="sw('new')">✏️ เริ่มใหม่</button>
+    <button class="btn-l warn" onclick="sw('perm')">🔒 ขออนุญาตเนื้อหา 18+</button>
+    <div class="dim">
+        <span>มุมมอง:</span>
+        <button class="d-btn active" onclick="setD('2D')">2D</button>
+        <button class="d-btn" onclick="setD('3D')">3D</button>
+    </div>
+
+    <h2>🔍 ค้นหาประวัติศาสตร์</h2>
+    <input type="text" id="q" placeholder="พิมพ์ชื่อประเทศ" oninput="findH()">
+    <div id="rh" class="bx"></div>
+
+    <h2>📤 ขออนุญาตส่งออก/ทำ APK</h2>
+    <p class="t">กรอกข้อมูลครบถ้วน ระบบจะอนุญาตให้ส่งออกได้</p>
+    <input type="text" id="nn" placeholder="ชื่อเล่นผู้สร้าง">
+    <input type="text" id="fnm" placeholder="ชื่อไฟล์/ชื่อผลงาน">
+    <input type="text" id="ul" placeholder="ลิงก์ผลงานของคุณ">
+    <button onclick="doEx()">✅ ยืนยันขออนุญาต</button>
+    <div id="ors" class="bx" style="display:none;"></div>
+
+    <div style="height:1500px;"></div>
+</div>
+
+<div id="mod" class="pg" style="display:none;">
+    <h2>📦 โมเดลพร้อมใช้</h2>
+    <div class="mlst">
+        <div onclick="useM('แอคชั่น')">⚔️ เกมแอคชั่น</div>
+        <div onclick="useM('ข้อมูล')">📰 เว็บข้อมูล/ประวัติ</div>
+        <div onclick="useM('เปล่า')">📄 โครงเปล่า</div>
+    </div>
+    <button class="b-back" onclick="sw('main')">⬅️ กลับ</button>
+</div>
+
+<div id="new" class="pg" style="display:none;">
+    <div class="top">
+        <b id="tn">—</b>
+        <button class="sv" onclick="saveAll()">💾 บันทึก</button>
+    </div>
+    <input type="text" id="pn" placeholder="ชื่อผลงาน (ไทย/อังกฤษ ได้เลย)">
+    <div class="flst"><h4>📂 ไฟล์ของฉัน</h4><div id="fv"></div></div>
+    <button class="add" onclick="addF()">➕ เพิ่มไฟล์</button>
+    <div id="fe" style="display:none;">
+        <input type="text" id="fn" placeholder="ชื่อไฟล์ เช่น index.html">
+        <textarea id="fc" placeholder="โค้ดหรือเนื้อหาภายในไฟล์"></textarea>
+        <button class="sv" onclick="saveF()">✅ บันทึกไฟล์ & กลับไปทำต่อ</button>
+    </div>
+    <button class="go" onclick="build()">🚀 รวมเป็นผลงาน & ดูตัวอย่าง</button>
+    <div id="pv" class="pv" style="display:none;">
+        <h4>👁️ ตัวอย่าง (เว็บซ้อนเว็บ)</h4>
+        <iframe id="fm" frameborder="0"></iframe>
+        <button onclick="sw('main')">⬅️ กลับ</button>
+    </div>
+</div>
+
+<div id="perm" class="pg" style="display:none;">
+    <h2>🔒 ขออนุญาตเนื้อหา 18+ — เข้มงวดมาก</h2>
+    <div id="pstep" class="bx"></div>
+</div>
+
+<div id="warn-layer" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:center;">
+    <div id="warn-char" style="width:80px;height:80px;border-radius:50%;background:#ffd700;margin-bottom:20px;"></div>
+    <p id="warn-text" style="color:white;font-size:1.2rem;text-align:center;padding:20px;"></p>
+</div>
+
+<div id="ban-layer" style="display:none;position:fixed;inset:0;background:black;z-index:99999;align-items:center;justify-content:center;">
+    <div style="text-align:center;color:white;">
+        <h2>⚠️ ระบบสแกนความปลอดภัย</h2>
+        <p>คุณละเมิดขอบเขตที่กำหนด</p>
+        <p>ถูกระงับการใช้งานเป็นเวลา 1 นาที</p>
+        <div id="ban-timer" style="font-size:2rem;margin-top:20px;">01:00</div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+<script src="data.js"></script>
+</body>
+</html>
