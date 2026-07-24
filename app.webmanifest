@@ -1,0 +1,9 @@
+{
+    "name": "สร้างงาน — กาฟิวทำเว็บ",
+    "short_name": "กาฟิวทำเว็บ",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#0b1020",
+    "theme_color": "#ff4757",
+    "icons": [{"src":"icon.png","sizes":"192x192","type":"image/png"}]
+}
